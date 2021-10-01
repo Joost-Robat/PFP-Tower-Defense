@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 29f0bd1311fd86148b6649b708a4b223
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pathTile: {fileID: 2178486579094421605, guid: 24d0e67c780c13945910ee0e4bae69b0, type: 3}
+  - buildTile: {fileID: 7699669747194298502, guid: 047140c11b6ec37408c80dd4a24213f4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
