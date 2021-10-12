@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float speed;
-    public int row;
-    public int rowPos;
-    public float counter, counter1;
-    public bool west;
-    public bool north;
-    public bool east;
-    public bool south;
-    public float movementTrue;
-    public bool movement;
+    public int row, rowPos;
+    public float counter, counter1, movementTrue, speed, priority;
+    public bool west, north, east, south, movement;
     public int[,] map =
     {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -39,9 +32,19 @@ public class EnemyAI : MonoBehaviour
         south = true;
         north = true;
         west = true;
+        priority = 0.001f;
     }
 
     // Update is called once per frame
+    void endPoint()
+    {
+        Debug.Log("Endpoint reached.");
+        FindObjectOfType<PlayerHealthComponent>().TakeDamage(1);
+        priority = 0;
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+        movement = false;
+    }
     void Update()
     {
         if (movementTrue < 0.5)
@@ -54,6 +57,7 @@ public class EnemyAI : MonoBehaviour
         }
         if(movement == true)
         {
+            priority += Time.deltaTime;
             // west
             if (west == true)
             {
@@ -71,10 +75,7 @@ public class EnemyAI : MonoBehaviour
                         counter = 0;
                         if(map[row, rowPos] == 2)
                         {
-                            Debug.Log("Endpoint reached.");
-                            FindObjectOfType<PlayerHealthComponent>().TakeDamage(1);
-                            Destroy(gameObject);
-                            movement = false;
+                            endPoint();
                         }
                     }
 
@@ -97,10 +98,7 @@ public class EnemyAI : MonoBehaviour
                         counter = 0;
                         if (map[row, rowPos] == 2)
                         {
-                            Debug.Log("Endpoint reached.");
-                            FindObjectOfType<PlayerHealthComponent>().TakeDamage(1);
-                            Destroy(gameObject);
-                            movement = false;
+                            endPoint();
                         }
                     }
                 }
@@ -122,10 +120,7 @@ public class EnemyAI : MonoBehaviour
                         counter = 0;
                         if (map[row, rowPos] == 2)
                         {
-                            Debug.Log("Endpoint reached.");
-                            FindObjectOfType<PlayerHealthComponent>().TakeDamage(1);
-                            Destroy(gameObject);
-                            movement = false;
+                            endPoint();
                         }
                     }
                 }
@@ -146,10 +141,7 @@ public class EnemyAI : MonoBehaviour
                         counter = 0;
                         if (map[row, rowPos] == 2)
                         {
-                            Debug.Log("Endpoint reached.");
-                            FindObjectOfType<PlayerHealthComponent>().TakeDamage(1);
-                            Destroy(gameObject);
-                            movement = false;
+                            endPoint();
                         }
                     }
                 }
